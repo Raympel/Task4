@@ -1,14 +1,18 @@
-class Herbivores(var favoritePlant: String, var habitat: String)  {
-    fun listH(): ArrayList<String> {
-        return arrayListOf(favoritePlant, habitat)
-    }
+open class Animals(var weight: Int, var age: Int){
+}
 
-}
-class Carnivores(var favoriteFood: String, var habitat: String) {
-    fun listC(): ArrayList<String> {
-        return arrayListOf(favoriteFood, habitat)
+class Herbivores(var favoritePlant: String, var habitat: String, weight: Int, age: Int) :Animals(weight, age) {
+    fun listH(): ArrayList<Any> {
+        return arrayListOf(favoritePlant, habitat, weight, age)
     }
 }
+
+class Carnivores(var favoriteFood: String, var habitat: String, weight: Int, age: Int) : Animals(weight, age) {
+    fun listC(): ArrayList<Any> {
+        return arrayListOf(favoriteFood, habitat, weight, age)
+    }
+}
+
 
 fun  printSome (collection: List<Any>) {
     collection.forEach{el -> println("$el")}
@@ -16,11 +20,11 @@ fun  printSome (collection: List<Any>) {
 
 fun main() {
 
-    val wolf = Carnivores("meat", "forest")
-    val owl = Carnivores("mouse", "forest")
+    val wolf = Herbivores("meat", "forest", 40,7)
+    val owl = Herbivores("mouse", "forest",15, 9)
 
-    val sheep = Herbivores("grass", "meadow")
-    val rabbit = Herbivores("grass", "forest")
+    val sheep = Carnivores("grass", "meadow", 50, 9)
+    val rabbit = Carnivores("grass", "forest", 7, 3)
 
     val collection: ArrayList<Any> = arrayListOf()
 
